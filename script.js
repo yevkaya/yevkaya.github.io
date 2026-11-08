@@ -396,3 +396,78 @@ if (canvas && !reduceMotion) {
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 120); }, { passive: true });
   window.addEventListener('hashchange', () => requestAnimationFrame(resizeIfVisible));
 }
+
+/* ---------- Fig. 2: the worldsheet sags into the bulk (one quiet 10 s loop) ---------- */
+(() => {
+  const svg = document.querySelector('svg.ads-svg');
+  if (!svg) return;
+  const $ = (id) => svg.querySelector('#' + id);
+  const clipF = $('ads-clip-fr'), clipB = $('ads-clip-br'), slice = $('ads-slice'), contour = $('ads-contour'),
+        zdot = $('ads-zdot'), result = $('ads-result'), sheetF = $('ads-sheet-f'), sheetB = $('ads-sheet-b'), btn = $('ads-play');
+  if (!clipF || !clipB || !slice || !contour || !zdot || !result) return;
+  // projection of the drawing: (x, y, z) -> (302 + 174x + 52y, 138 - 46y + 166z); the loop has R = 1
+  const OX = 302, OY = 138, RZ = 166, T = 10000;
+  const ease = (u) => 0.5 - 0.5 * Math.cos(Math.PI * Math.min(1, Math.max(0, u)));
+  const slicePath = (z) => {
+    const rho = Math.sqrt(Math.max(0, 1 - z * z)); let d = '';
+    for (let i = 0; i <= 48; i++) {
+      const a = (i / 48) * 2 * Math.PI, x = rho * Math.cos(a), y = rho * Math.sin(a);
+      d += (i ? 'L' : 'M') + (OX + 174 * x + 52 * y).toFixed(2) + ' ' + (OY - 46 * y + RZ * z).toFixed(2);
+    }
+    return d + 'Z';
+  };
+  const setDepth = (z) => {              // reveal the surface down to depth z (front and back rims separately)
+    const rho = Math.sqrt(Math.max(0, 1 - z * z));
+    clipF.setAttribute('height', (OY + RZ * z + 46 * rho + 2).toFixed(1));
+    clipB.setAttribute('height', (OY + RZ * z - 46 * rho + 2).toFixed(1));
+    zdot.setAttribute('cy', (92 + RZ * z).toFixed(1));
+    slice.setAttribute('d', z > 0.015 && z < 0.985 ? slicePath(z) : '');
+  };
+  const render = (t) => {                // t in [0, T)
+    // A: 0–2.2 s the contour is drawn
+    contour.style.strokeDasharray = '1';
+    contour.style.strokeDashoffset = (1 - ease(t / 2200)).toFixed(4);
+    // B: 2.2–7.0 s the sheet sags into the bulk (hidden during A, faded in as it starts)
+    if (t < 2200) { clipF.setAttribute('height', '0'); clipB.setAttribute('height', '0'); slice.setAttribute('d', ''); zdot.setAttribute('cy', '92'); }
+    else setDepth(ease((t - 2200) / 4800));
+    // C: 7.0–8.2 s the result appears; 9.3–10 s everything but the loop fades for the restart
+    const out = t > 9300 ? 1 - (t - 9300) / 700 : 1;
+    sheetF.style.opacity = sheetB.style.opacity = (Math.min(1, Math.max(0, (t - 2200) / 700)) * out).toFixed(3);
+    result.style.fillOpacity = (ease((t - 7000) / 1200) * out).toFixed(3);
+    if (t > 9300) { contour.style.strokeDashoffset = ((t - 9300) / 700).toFixed(4); slice.setAttribute('d', ''); }
+  };
+  const finalState = () => {             // the completed picture, for reduced motion and for the paused state
+    contour.style.strokeDasharray = ''; contour.style.strokeDashoffset = '';
+    sheetF.style.opacity = sheetB.style.opacity = '1';
+    clipF.setAttribute('height', '400'); clipB.setAttribute('height', '400');
+    slice.setAttribute('d', ''); zdot.setAttribute('cy', (92 + RZ).toFixed(1));
+    result.style.fillOpacity = '1';
+  };
+
+  let playing = true, visible = true, raf = 0, start = null, elapsed = 0;   // autoplays; the ▶/⏸ control is the opt-out
+  const setPlaying = (p) => {
+    playing = p; start = null;
+    svg.classList.toggle('ads-playing', p);
+    if (btn) btn.setAttribute('aria-label', p ? 'Pause the animation' : 'Play the animation');
+    if (p) run();
+  };
+  const frame = (now) => {
+    raf = 0;
+    if (!visible || !playing) return;
+    if (start === null) start = now - elapsed;
+    elapsed = (now - start) % T; if (now - start >= T) start = now - elapsed;
+    render(elapsed);
+    raf = requestAnimationFrame(frame);
+  };
+  const run = () => { if (!raf && visible && playing) raf = requestAnimationFrame(frame); };
+  if (btn) {
+    const toggle = () => setPlaying(!playing);
+    btn.addEventListener('click', toggle);
+    btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es) => { es.forEach((e) => { visible = e.isIntersecting; }); if (visible) { start = null; run(); } }, { threshold: 0.15 }).observe(svg);
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { start = null; run(); } });
+  if (reduceMotion && !svg.closest('.hero')) { finalState(); setPlaying(false); } else setPlaying(true);
+})();

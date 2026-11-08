@@ -614,6 +614,20 @@ __FIG1_KEYFRAMES__
 .footer-grid .footer-meta a { color: #becac4; font-size: inherit; text-decoration: underline; text-decoration-color: rgba(190, 202, 196, 0.45); text-underline-offset: 2px; }
 .footer-grid .footer-meta a:hover { color: var(--mint); text-decoration-color: currentColor; }
 .dialog-note { margin: 0; color: var(--ink-soft); font-family: var(--text); font-size: 0.9rem; font-style: italic; }
+/* ---- Fig. 2: the internal S⁵ turns slowly clockwise ---- */
+.ads-svg .ads-s5-spin { transform-box: fill-box; transform-origin: center; }
+.ads-svg.ads-playing .ads-s5-spin { animation: ads-spin 14s linear infinite; }
+@keyframes ads-spin { to { transform: rotate(360deg); } }
+.ads-svg .ads-play { cursor: pointer; outline: none; }
+.ads-svg .ads-play-ring { fill: rgba(143, 240, 234, 0.06); stroke: rgba(143, 240, 234, 0.55); stroke-width: 0.9; transition: fill 160ms ease; }
+.ads-svg .ads-play:hover .ads-play-ring, .ads-svg .ads-play:focus-visible .ads-play-ring { fill: rgba(143, 240, 234, 0.16); }
+.ads-svg .ads-ic-pause rect, .ads-svg .ads-ic-play { fill: #8ff0ea; }
+.ads-svg .ads-ic-play { display: none; }
+.ads-svg:not(.ads-playing) .ads-ic-play { display: inline; }
+.ads-svg:not(.ads-playing) .ads-ic-pause { display: none; }
+html:not(.js) .ads-svg .ads-play { display: none; }
+.holography-panel .diagram-header::after { margin-left: auto; color: rgba(143, 240, 234, 0.62); content: "ANIMATED · 10 s LOOP";
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: none; white-space: nowrap; }
 /* ===== END DESIGN SYSTEM v4 ===== */
 """
 
