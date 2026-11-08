@@ -1,0 +1,7 @@
+# Kaynak PDF arşivi; yayın köküne girmemeli (kopyaları assets/documents/ altında)
+Projeler/
+
+# Editör / OS artıkları
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found — Yaman Evkaya</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      html, body { height: 100%; }
+      body.nf { display: grid; grid-template-rows: auto 1fr auto; min-height: 100svh; margin: 0; color: #eef6f1; background: linear-gradient(135deg, #07100e 0%, #0b1814 58%, #08110f 100%); }
+      .nf-header { display: flex; align-items: center; height: 84px; padding: 0 clamp(16px, 3vw, 40px); border-bottom: 1px solid var(--line-dark); }
+      .nf .wordmark { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+      .nf .wordmark-mark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(121, 227, 225, 0.5); color: var(--mint); font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.04em; }
+      .nf .wordmark-text { font-family: var(--display); font-size: 1.15rem; letter-spacing: -0.01em; }
+      .nf-main { position: relative; display: grid; place-items: center; padding: clamp(40px, 8vw, 96px) clamp(16px, 3vw, 40px); overflow: hidden; }
+      .nf-main::after { position: absolute; inset: 0; z-index: 0; pointer-events: none; content: ""; opacity: 0.22; background-image: linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom, #000, transparent 90%); }
+      .nf-card { position: relative; z-index: 1; width: min(640px, 100%); }
+      .nf-code { margin: 0 0 22px; color: var(--mint); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; }
+      .nf-code::before { display: inline-block; width: 28px; height: 1px; margin: 0 12px 4px 0; content: ""; background: currentColor; vertical-align: middle; }
+      .nf h1 { margin: 0 0 20px; font-family: var(--display); font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; }
+      .nf p { max-width: 52ch; margin: 0 0 30px; color: #b9c7c0; font-family: var(--text); font-size: 1.05rem; line-height: 1.6; }
+      .nf-links { display: flex; flex-wrap: wrap; gap: 12px; }
+      .nf-links a { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border: 1px solid rgba(121, 227, 225, 0.35); color: #eef6f1; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: border-color 0.25s var(--ease), background 0.25s var(--ease); }
+      .nf-links a:hover, .nf-links a:focus-visible { border-color: var(--mint); background: rgba(121, 227, 225, 0.08); }
+      .nf-links a.primary { border-color: var(--mint); background: var(--mint); color: #07100e; }
+      .nf-links a.primary:hover { background: #8feeec; }
+      .nf-footer { padding: 26px clamp(16px, 3vw, 40px); border-top: 1px solid var(--line-dark); color: #8f9d97; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
+      .nf-fig { position: absolute; right: clamp(-40px, 2vw, 40px); bottom: -30px; z-index: 0; width: min(46vw, 420px); opacity: 0.55; pointer-events: none; }
+      @media (max-width: 720px) { .nf-fig { display: none; } }
+    </style>
+  </head>
+  <body class="nf">
+    <header class="nf-header">
+      <a class="wordmark" href="/" aria-label="Yaman Evkaya, home">
+        <span class="wordmark-mark" aria-hidden="true">YE</span>
+        <span class="wordmark-text">Yaman Evkaya</span>
+      </a>
+    </header>
+    <main class="nf-main">
+      <div class="nf-card">
+        <p class="nf-code">404 · Page not found</p>
+        <h1>This page does not exist.</h1>
+        <p>The address may have changed when the site moved to yevkaya.com, or the link you followed was incomplete. Everything on this site is reachable from the pages below.</p>
+        <nav class="nf-links" aria-label="Site sections">
+          <a class="primary" href="/">Home</a>
+          <a href="/#profile">Researcher Profile</a>
+          <a href="/#work">Research Projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+      <svg class="nf-fig" viewBox="0 0 420 260" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="rgba(121,227,225,0.28)" stroke-width="1">
+          <path d="M60 130 l30-52 h60 l30 52 -30 52 h-60z"/>
+          <path d="M180 130 l30-52 h60 l30 52 -30 52 h-60z"/>
+          <path d="M120 26 l30-52 h60 l30 52 -30 52 h-60z" opacity=".35"/>
+          <path d="M120 234 l30-52 h60 l30 52 -30 52 h-60z" opacity=".35"/>
+          <path d="M300 26 l30-52 h60 l30 52 -30 52 h-60z" opacity=".2"/>
+          <path d="M300 234 l30-52 h60 l30 52 -30 52 h-60z" opacity=".2"/>
+        </g>
+        <g fill="rgba(121,227,225,0.9)">
+          <circle cx="90" cy="78" r="3"/><circle cx="150" cy="78" r="3"/><circle cx="180" cy="130" r="3"/>
+          <circle cx="270" cy="78" r="3"/><circle cx="300" cy="130" r="3"/><circle cx="270" cy="182" r="3"/>
+        </g>
+        <path d="M150 78 L180 130 L270 78" fill="none" stroke="rgba(121,227,225,0.75)" stroke-width="1.6" stroke-dasharray="4 5"/>
+      </svg>
+    </main>
+    <footer class="nf-footer">yevkaya.com · Theoretical &amp; computational quantum physics</footer>
+  </body>
+</html>
