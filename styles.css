@@ -1333,7 +1333,7 @@ html:not(.js) .f1-play, html:not(.js) .f1-hit { display: none; }
   .hero { overflow: clip; min-height: 0; }
   .hero-copy { position: static; translate: none; max-width: none; margin: 0; text-align: left; display: grid; align-items: start;
     grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; grid-template-areas: "eyebrow status" "title title" "intro intro" "actions actions"; }
-  .eyebrow { grid-area: eyebrow; margin-bottom: 6px; justify-content: flex-start; }
+  .eyebrow { grid-area: eyebrow; margin-bottom: 14px; justify-content: flex-start; }
   .eyebrow { grid-template-columns: 28px auto auto; align-items: baseline; column-gap: 16px; }
   .eyebrow small { grid-column: auto; margin: 0; }
   .hero-status { grid-area: status; max-width: none; margin: 8px 0 0; padding: 0; border: 0; justify-content: flex-end; justify-self: end; }
@@ -1346,7 +1346,8 @@ html:not(.js) .f1-play, html:not(.js) .f1-hit { display: none; }
     font-size: clamp(0.56rem, 0.44vw, 0.64rem); letter-spacing: 0.16em; }
   .hero-theory-visual { max-width: none; width: 100%; justify-self: stretch; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
   .hero-theory-visual .theory-panel + .theory-panel { margin-top: 0 !important; }
-  .eyebrow strong { font-size: clamp(2rem, 2.8vw, 3.3rem); }
+  .eyebrow strong { font-size: clamp(2.2rem, 3.1vw, 3.6rem); }
+  .eyebrow small { font-size: clamp(0.72rem, 0.9vw, 0.9rem); }
 }
 /* figure plates: one-line headers */
 @media (min-width: 821px) {
