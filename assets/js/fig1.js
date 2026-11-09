@@ -276,8 +276,9 @@
     }
   };
 
-  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let playing = !reduce, visible = true, dragging = false, last = null;
+  // Autoplays regardless of the reduced-motion setting; the play/pause button, the slider and the keyboard remain in control.
+  const reduce = false;
+  let playing = true, visible = true, dragging = false, last = null;
   const setPlaying = (p) => {
     playing = p; last = null;
     svg.classList.toggle('is-paused', !p);
