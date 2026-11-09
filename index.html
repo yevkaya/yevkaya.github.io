@@ -17,6 +17,10 @@
     />
     <meta property="og:url" content="https://yevkaya.com/" />
     <meta property="og:image" content="https://yevkaya.com/assets/images/social-card.png" />
+    <link rel="alternate" hreflang="en" href="https://yevkaya.com/" />
+    <link rel="alternate" hreflang="tr" href="https://yevkaya.com/tr/" />
+    <link rel="alternate" hreflang="de" href="https://yevkaya.com/de/" />
+    <link rel="alternate" hreflang="x-default" href="https://yevkaya.com/" />
     <link rel="canonical" href="https://yevkaya.com/" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -25,7 +29,7 @@
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/images/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=20261108-9" />
+    <link rel="stylesheet" href="styles.css?v=20261109-1" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -68,6 +72,7 @@
         <a href="#profile">Researcher Profile</a>
         <a href="#work">Selected Research Projects</a>
         <a class="nav-cta" href="#contact" data-contact aria-haspopup="dialog">Contact</a>
+        <div class="lang-switch" aria-label="Language"><a href="./" lang="en" hreflang="en" aria-current="page">EN</a><a href="tr/" lang="tr" hreflang="tr">TR</a><a href="de/" lang="de" hreflang="de">DE</a></div>
       </nav>
     </header>
 
@@ -90,16 +95,13 @@
               simulation into industry-relevant technology.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#explore" data-explore aria-haspopup="dialog">Explore my work <span aria-hidden="true">↘</span></a>
+              <a class="button button-primary" href="#profile">Researcher profile <span aria-hidden="true">→</span></a>
+              <a class="button button-primary" href="#work">Research projects <span aria-hidden="true">→</span></a>
               <a class="button button-ghost" href="assets/documents/Yaman-Evkaya-CV.pdf" target="_blank" rel="noopener">
                 Download CV <span aria-hidden="true">↓</span>
               </a>
             </div>
-            <dl class="hero-ledger">
-              <div><dt>Training</dt><dd>M.Sc. Physics<br>LMU Munich</dd></div>
-              <div><dt>Publication</dt><dd><a href="https://doi.org/10.1007/s10773-023-05498-3" target="_blank" rel="noopener">Int. J. Theor. Phys.<br>(2023) · first author</a></dd></div>
-              <div><dt>Availability</dt><dd><span class="signal-dot" aria-hidden="true"></span><span>Open to roles<br>Munich, Germany</span></dd></div>
-            </dl>
+            <p class="hero-status"><span class="signal-dot" aria-hidden="true"></span><span class="hero-status-k">Availability</span><span>Open to roles · Located in Munich, Germany</span></p>
           </div>
 
           <div class="hero-theory-visual reveal" aria-label="Research schematics: finite gauge dynamics and holography">
@@ -272,28 +274,6 @@
           </div>
         </div>
       </section>
-
-      <dialog class="explore-dialog" id="explore-dialog" aria-labelledby="explore-title">
-        <button class="dialog-close" type="button" data-dialog-close aria-label="Close">×</button>
-        <div class="explore-inner">
-          <p class="kicker">Explore</p>
-          <h2 id="explore-title">Where would you like to go?</h2>
-          <div class="explore-options">
-            <a class="explore-card" href="#profile">
-              <span class="explore-index">01</span>
-              <h3>Researcher Profile</h3>
-              <p>Theoretical and computational profile, AI-augmented research practice and industrial directions.</p>
-              <span class="explore-link">Open profile <span aria-hidden="true">→</span></span>
-            </a>
-            <a class="explore-card" href="#work">
-              <span class="explore-index">02</span>
-              <h3>Selected Research Projects</h3>
-              <p>M.Sc. and B.Sc. theses, a peer-reviewed article and an experimental detector project.</p>
-              <span class="explore-link">Open projects <span aria-hidden="true">→</span></span>
-            </a>
-          </div>
-        </div>
-      </dialog>
 
       <div class="view" data-view="profile">
         <div class="view-bar">
@@ -591,13 +571,13 @@
         <div><strong>Yaman Evkaya</strong><span>Theoretical &amp; computational quantum physics</span></div>
         <div class="footer-meta">
           <span>Munich, Germany</span>
-          <span>Updated <time data-updated datetime="2026-11-08">November 2026</time> · <a href="https://github.com/yevkaya/yevkaya.github.io" target="_blank" rel="noopener">Source</a> · © <span data-year></span></span>
+          <span>Updated <time data-updated datetime="2026-11-09">November 2026</time> · <a href="https://github.com/yevkaya/yevkaya.github.io" target="_blank" rel="noopener">Source</a> · © <span data-year></span></span>
         </div>
         <a href="#top">Back to top ↑</a>
       </div>
     </footer>
 
     <script src="assets/js/fig1.js?v=13" defer></script>
-    <script src="script.js?v=20261108-9"></script>
+    <script src="script.js?v=20261109-1"></script>
   </body>
 </html>

@@ -38,7 +38,7 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 
-/* ---------- Dialogs: one layer for projects, profile areas, contact and the explore chooser ---------- */
+/* ---------- Dialogs: one layer for projects, profile areas and contact ---------- */
 let lastDialogTrigger = null;
 
 const openDialog = (dialog, trigger) => {
@@ -105,16 +105,6 @@ document.querySelectorAll('[data-contact]').forEach((trigger) => {
   trigger.addEventListener('click', (event) => {
     if (openDialog(contactDialog, trigger)) event.preventDefault();
   });
-});
-
-const exploreDialog = document.querySelector('#explore-dialog');
-document.querySelectorAll('[data-explore]').forEach((trigger) => {
-  trigger.addEventListener('click', (event) => {
-    if (openDialog(exploreDialog, trigger)) event.preventDefault();
-  });
-});
-exploreDialog?.addEventListener('click', (event) => {
-  if (event.target.closest('a')) exploreDialog.close();
 });
 
 /* ---------- Views: the hero is the landing; #profile / #work replace it like separate pages ---------- */
@@ -470,4 +460,32 @@ if (canvas && !reduceMotion) {
   }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) { start = null; run(); } });
   if (reduceMotion && !svg.closest('.hero')) { finalState(); setPlaying(false); } else setPlaying(true);
+})();
+
+/* ---------- Home: scale the figure plates so the landing fits one screen on desktop ---------- */
+(() => {
+  const vis = document.querySelector('.hero-theory-visual');
+  if (!vis) return;
+  const apply = (z) => {
+    if (z >= 0.999) { vis.style.transform = ''; vis.style.marginBottom = ''; return; }
+    vis.style.transform = 'scale(' + z.toFixed(4) + ')';
+    vis.style.marginBottom = (-vis.offsetHeight * (1 - z)).toFixed(1) + 'px';
+  };
+  const fit = () => {
+    apply(1);
+    if (document.body.dataset.view !== 'home' || innerWidth < 821 || innerHeight < 640) return;
+    let z = 1;
+    for (let i = 0; i < 8; i++) {
+      const over = document.documentElement.scrollHeight - innerHeight;
+      if (over <= 0) break;
+      const h = vis.offsetHeight * z;            // rendered height of the plates
+      z = Math.max(0.3, z * (h - over - 4) / h);
+      apply(z);
+    }
+  };
+  addEventListener('resize', fit);
+  addEventListener('hashchange', () => setTimeout(fit, 50));
+  addEventListener('load', () => { fit(); [250, 800, 1600].forEach((ms) => setTimeout(fit, ms)); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
 })();

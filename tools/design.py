@@ -152,7 +152,7 @@ math { font-family: 'STIX Two Math', math; font-size: 1.04em; }
 html:not(.js) .f1-play, html:not(.js) .f1-hit { display: none; }
 
 /* the copy stays pinned while the plates scroll, where the screen is tall enough to show all of it */
-@media (min-width: 821px) and (min-height: 760px) { .hero-copy { position: sticky; top: 100px; } }
+
 /* figure plates: a quiet frame with gold registration corners */
 @media (min-width: 821px) {
   .hero-theory-visual .theory-panel { position: relative; margin: 0 !important; padding: 18px 22px 16px !important;
@@ -357,27 +357,38 @@ html:not(.js) .f1-play, html:not(.js) .f1-hit { display: none; }
 .button-ghost { border-color: rgba(239, 231, 214, 0.26); }
 .button span[aria-hidden] { font-family: var(--text); font-size: 1rem; letter-spacing: 0; }
 
-.hero-ledger { display: grid; max-width: 36rem; margin: min(28px, 3.1vh) 0 0; padding: 0; grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(239, 231, 214, 0.12); }
-.hero-ledger div { padding: 14px 20px 0 0; margin-right: 20px; border-right: 1px solid rgba(239, 231, 214, 0.08); }
-.hero-ledger div:last-child { margin-right: 0; padding-right: 0; border-right: 0; }
-.hero-ledger dt { color: rgba(143, 240, 234, 0.62); font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
-.hero-ledger dd { display: flex; align-items: center; gap: 9px; margin: 7px 0 0; color: rgba(236, 240, 232, 0.8); font-size: 0.9rem; line-height: 1.35; }
-.hero-ledger a { color: inherit; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
-  background-color: transparent; padding-bottom: 1px; transition: color 180ms ease; }
-.hero-ledger a:hover, .hero-ledger a:focus-visible { color: var(--flux); }
-.hero-ledger .signal-dot { width: 6px; height: 6px; flex: none; }
+.hero-status { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; max-width: 36rem; margin: min(28px, 3.1vh) 0 0; padding: 16px 0 0;
+  border-top: 1px solid rgba(239, 231, 214, 0.12); color: rgba(236, 240, 232, 0.8); font-size: 0.9rem; line-height: 1.35; }
+.hero-status .signal-dot { width: 6px; height: 6px; flex: none; }
+.hero-status-k { color: rgba(143, 240, 234, 0.62); font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
+.hero-status-k::after { content: "—"; margin-left: 12px; color: rgba(239, 231, 214, 0.3); }
 
 /* hero: a wide column for the figure plates; the copy stays in view while the plates scroll */
 @media (min-width: 821px) {
   :root { --shell: min(1320px, calc(100vw - 80px)); }
-  .hero-grid { min-height: calc(100svh - 96px); align-items: start; padding-top: 100px; padding-bottom: 64px;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(36px, 3.6vw, 64px); }
-  .hero { overflow: clip; }
-  .hero-copy { align-self: start; }
-  .hero-theory-visual { max-width: 800px; width: 100%; justify-self: end; }
-  .hero h1 { font-size: clamp(2.6rem, 4.3vw, 4.5rem); }
-  .eyebrow strong { font-size: clamp(2.2rem, 3.5vw, 3.5rem); }
+  .hero .shell { width: min(1640px, calc(100vw - 96px)); }
+  .site-header { padding: 0 max(40px, calc((100vw - 1320px) / 2)); }
+  body[data-view="home"] .site-header { padding: 0 max(48px, calc((100vw - 1640px) / 2)); }
+  /* hero: copy left-aligned across the full width, availability top-right, figure plates side by side beneath */
+  .hero-grid { min-height: 0; align-items: start; padding-top: 88px; padding-bottom: 16px; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  body[data-view="home"] .site-footer { padding: 10px 0; }
+  .hero { overflow: clip; min-height: 0; }
+  .hero-copy { position: static; translate: none; max-width: none; margin: 0; text-align: left; display: grid; align-items: start;
+    grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; grid-template-areas: "eyebrow status" "title title" "intro intro" "actions actions"; }
+  .eyebrow { grid-area: eyebrow; margin-bottom: 6px; justify-content: flex-start; }
+  .eyebrow { grid-template-columns: 28px auto auto; align-items: baseline; column-gap: 16px; }
+  .eyebrow small { grid-column: auto; margin: 0; }
+  .hero-status { grid-area: status; max-width: none; margin: 8px 0 0; padding: 0; border: 0; justify-content: flex-end; justify-self: end; }
+  .hero h1 { grid-area: title; max-width: none; font-size: clamp(2rem, 2.8vw, 3.3rem); }
+  .hero-theory-visual { transform-origin: top center; }
+  .hero h1 em { display: inline; }
+  .hero-intro { grid-area: intro; max-width: none; margin-top: 10px; font-size: clamp(0.94rem, 0.98vw, 1.08rem); line-height: 1.5; }
+  .hero-actions { grid-area: actions; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; max-width: 44rem; margin: 14px 0 0; }
+  .hero-actions .button { flex: 1 1 0; min-width: 0; justify-content: space-between; padding: 13px 16px; white-space: nowrap;
+    font-size: clamp(0.56rem, 0.44vw, 0.64rem); letter-spacing: 0.16em; }
+  .hero-theory-visual { max-width: none; width: 100%; justify-self: stretch; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .hero-theory-visual .theory-panel + .theory-panel { margin-top: 0 !important; }
+  .eyebrow strong { font-size: clamp(2rem, 2.8vw, 3.3rem); }
 }
 /* figure plates: one-line headers */
 @media (min-width: 821px) {
@@ -438,8 +449,7 @@ html:not(.js) .f1-play, html:not(.js) .f1-hit { display: none; }
 
 @media (max-width: 820px) {
   .eyebrow small { letter-spacing: 0.14em; }
-  .hero-ledger { grid-template-columns: 1fr; }
-  .hero-ledger div { margin-right: 0; padding: 12px 0 0; border-right: 0; }
+  .hero-status { gap: 10px; padding-top: 14px; }
 }
 
 /* generated choreography */
@@ -628,6 +638,18 @@ __FIG1_KEYFRAMES__
 html:not(.js) .ads-svg .ads-play { display: none; }
 .holography-panel .diagram-header::after { margin-left: auto; color: rgba(143, 240, 234, 0.62); content: "ANIMATED · 10 s LOOP";
   font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: none; white-space: nowrap; }
+
+/* language switch (nav) */
+.lang-switch { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid rgba(239, 231, 214, 0.14); }
+.site-nav .lang-switch a { padding: 5px 8px; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; opacity: 0.62; }
+.site-nav .lang-switch a::after { display: none; }
+.site-nav .lang-switch a:hover, .site-nav .lang-switch a:focus-visible { opacity: 1; }
+.site-nav .lang-switch a[aria-current="page"] { color: #04110e; background: var(--flux); opacity: 1; }
+@media (max-width: 820px) {
+  .site-nav .lang-switch { margin-top: 10px; }
+  .site-nav .lang-switch a { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.16em; }
+  .site-nav .lang-switch a[aria-current="page"] { color: #04110e; }
+}
 /* ===== END DESIGN SYSTEM v4 ===== */
 """
 
