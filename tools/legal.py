@@ -28,9 +28,9 @@ CHECKDOMAIN_AVV = False
 
 # shown under the provider in the Impressum while ADDRESS is empty
 ADDRESS_PENDING = {
-    "de": "Eine ladungsfähige Zustellanschrift (c/o-Anschrift) wird derzeit eingerichtet und an dieser Stelle umgehend ergänzt. Bis dahin ist der Anbieter unter der nachstehenden E-Mail-Adresse erreichbar.",
-    "en": "A postal address suitable for the service of documents (c/o address) is currently being set up and will be added here without delay. Until then, the provider can be reached at the email address below.",
-    "tr": "Tebligata elverişli bir posta adresi (c/o adresi) şu anda temin edilmekte olup en kısa sürede buraya eklenecektir. O zamana kadar site sahibine aşağıdaki e-posta adresinden ulaşılabilir.",
+    "de": "Der Anbieter befindet sich derzeit im Umzug; die ladungsfähige Anschrift wird unmittelbar nach dem Bezug der neuen Wohnung an dieser Stelle ergänzt. Bis dahin ist der Anbieter unter der nachstehenden E-Mail-Adresse erreichbar.",
+    "en": "The provider is currently moving house; the postal address for service of documents will be added here immediately after moving into the new residence. Until then, the provider can be reached at the email address below.",
+    "tr": "Site sahibi şu anda taşınma sürecindedir; tebligata elverişli adres, yeni konuta taşınıldıktan hemen sonra buraya eklenecektir. O zamana kadar site sahibine aşağıdaki e-posta adresinden ulaşılabilir.",
 }
 
 MAIL = '<a href="mailto:yaman&#64;yevkaya.com">yaman&#64;yevkaya.com</a>'
