@@ -126,7 +126,9 @@ def all_units(html):
 
 def extract():
     html = open(os.path.join(SITE, "index.html"), encoding="utf-8").read()
-    keys = []
+    path = os.path.join(I18N, "strings.en.json")
+    # keep the existing order so the indices in tr.py / de.py stay valid; new units are appended at the end
+    keys = list(json.load(open(path, encoding="utf-8"))) if os.path.exists(path) else []
     for s, e in all_units(html):
         k = norm(html[s:e])
         if k and k not in keys: keys.append(k)
@@ -189,6 +191,8 @@ def build():
             else:
                 missing.append(k)
         html = relativise(html)
+        legal = {"tr": ("kunye.html", "gizlilik.html"), "de": ("impressum.html", "datenschutz.html")}[lang]
+        html = html.replace('href="legal-notice.html"', f'href="{legal[0]}"').replace('href="privacy.html"', f'href="{legal[1]}"')
         html = html.replace('<html lang="en">', f'<html lang="{lang}">', 1)
         html = html.replace('<link rel="canonical" href="https://yevkaya.com/" />', f'<link rel="canonical" href="https://yevkaya.com/{lang}/" />')
         html = html.replace('<meta property="og:url" content="https://yevkaya.com/" />', f'<meta property="og:url" content="https://yevkaya.com/{lang}/" />')

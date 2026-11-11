@@ -308,6 +308,9 @@ T = {
 318: "Münih, Almanya",
 319: 'Güncelleme: <time/> · <a href="https://github.com/yevkaya/yevkaya.github.io" target="_blank" rel="noopener">Kaynak kodu</a> · © <span data-year></span>',
 320: "Başa dön ↑",
+321: "Künye",
+322: "Gizlilik",
+323: '<a href="legal-notice.html">Künye</a> · <a href="privacy.html">Gizlilik</a>',
 }
 # JSON-LD plain strings
 EXTRA = {

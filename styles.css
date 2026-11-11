@@ -1611,4 +1611,18 @@ html:not(.js) .ads-svg .ads-play { display: none; }
   .site-nav .lang-switch a { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.16em; }
   .site-nav .lang-switch a[aria-current="page"] { color: #04110e; }
 }
+/* legal links (Impressum / privacy): footer on every view, compact line on the home view */
+.hero-legal { margin: 0; color: rgba(190, 202, 196, 0.72); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; }
+.hero-legal a { color: inherit; text-decoration: none; }
+.hero-legal a:hover, .hero-legal a:focus-visible { color: var(--mint); }
+.footer-legal { white-space: nowrap; }
+@media (min-width: 821px) {
+  .hero-grid { position: relative; }
+  .hero-legal { position: absolute; right: 0; bottom: 3px; line-height: 1; font-size: 0.56rem; text-align: right; }
+}
+@media (max-width: 820px) {
+  .hero-legal { margin: 18px 0 8px; }
+  .footer-grid > div.footer-meta { display: flex; grid-column: 1 / -1; order: 3; align-items: flex-start; text-align: left; }
+  .footer-meta > span:not(.footer-legal) { display: none; }
+}
 /* ===== END DESIGN SYSTEM v4 ===== */

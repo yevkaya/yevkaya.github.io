@@ -308,6 +308,9 @@ T = {
 318: "München, Deutschland",
 319: 'Aktualisiert <time/> · <a href="https://github.com/yevkaya/yevkaya.github.io" target="_blank" rel="noopener">Quelltext</a> · © <span data-year></span>',
 320: "Nach oben ↑",
+321: "Impressum",
+322: "Datenschutz",
+323: '<a href="legal-notice.html">Impressum</a> · <a href="privacy.html">Datenschutz</a>',
 }
 EXTRA = {
 "Theoretical and Computational Quantum Physicist": "Theoretischer und computergestützter Quantenphysiker",
